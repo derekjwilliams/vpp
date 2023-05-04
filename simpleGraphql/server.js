@@ -18,7 +18,7 @@ app.use(
       graphileBuildOptions: {
         connectionFilterRelations: true,
       },
-      watchPg: true,
+      watchPg: false,
       graphiql: true,
       enhanceGraphiql: true,
       dynamicJson: true,
