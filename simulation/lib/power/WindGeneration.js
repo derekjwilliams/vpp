@@ -1,5 +1,4 @@
-import ConnectingSwitch from ConnectingSwitch;
-import WindTurbine from WindTurbine;
+import Switch from "./Switch.js";
 
 
 // TODO use state machine e.g. https://xstate.js.org/
@@ -7,15 +6,17 @@ import WindTurbine from WindTurbine;
 /**
  * 
  * @param {!number} capacity 
- * @param {![WindTurbine]} windTurbines 
- * @param {!ConnectingSwitch} connectingSwitch 
+ * @param {!Switch[]} switches 
  * @param {!string} name 
  */
-function WindGeneration (capacity, windTurbines, connectingSwitch, name) {
+
+ //TODO @param {!WindTurbine[]} windTurbines //TODO 
+
+export default function WindGeneration (capacity, switches, name) {
   this.realPower = 0;
   this.capacity = capacity
-  this.windTurbines = windTurbines;
-  this.connectingSwitches = connectingSwitch ? [connectingSwitch] : []; // only one for now, but use array to avoid nulls
+  // this.windTurbines = windTurbines;
+  this.switches = switches; // only one for now, but use array to avoid nulls
   this.name = name;
   this.windSpeed = 0;
 }
@@ -23,29 +24,29 @@ function WindGeneration (capacity, windTurbines, connectingSwitch, name) {
 /**
  * Disconnects the one and only one connecting switch
  */
-WindGeneration.prototype.disconnectSwitch = function () {
-  if (this.connectingSwitches.length > 0) {
-    this.connectingSwitches[0].open();
-    console.log(`${this.name} has disconnected from switch: ${this.connectingSwitches[0].name}`)
-  } else if (this.connectingSwitches.length === 0) {
-    console.log(`Error: ${this.name} has no connectingSwitches`)
+WindGeneration.prototype.openSwitches = function () {
+  if (this.switches.length > 0) {
+    this.switches[0].open();
+    console.log(`${this.name} has disconnected from switch: ${this.switches[0].name}`)
+  } else if (this.switches.length === 0) {
+    console.log(`Error: ${this.name} has no connecting Switches`)
   }
-  else if (this.connectingSwitches.length > 1) {
-    console.log(`Error: ${this.name} has multiple connectingSwitches`)
+  else if (this.switches.length > 1) {
+    console.log(`Error: ${this.name} has multiple connecting Switches`)
   }
 }
 
 /**
  * 
  */
-WindGeneration.prototype.connectSwitch = function () {
-  if (this.connectingSwitches.length > 0) {
-    this.connectingSwitches[0].close();
-    console.log(`${this.name} has disconnected from switch: ${this.connectingSwitches[0].name}`)
-  } else if (this.connectingSwitches.length === 0) {
-    console.log(`Error: ${this.name} has no connectingSwitches`)
+WindGeneration.prototype.closeSwitches = function () {
+  if (this.switches.length > 0) {
+    this.switches[0].close();
+    console.log(`${this.name} has disconnected from switch: ${this.switches[0].name}`)
+  } else if (this.switches.length === 0) {
+    console.log(`Error: ${this.name} has no connecting Switches`)
   }
-  else if (this.connectingSwitches.length > 1) {
-    console.log(`Error: ${this.name} has multiple connectingSwitches`)
+  else if (this.switches.length > 1) {
+    console.log(`Error: ${this.name} has multiple connecting Switches`)
   }
 }
