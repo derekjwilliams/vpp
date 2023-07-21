@@ -1,0 +1,18 @@
+{
+  "name": "vpp_simulation",
+  "version": "1.0.0",
+  "description": "Simple simulation of a small utility in javascript",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "simulation",
+    "utility",
+    "power",
+    "energy"
+  ],
+  "author": "Derek J Williams",
+  "license": "MIT"
+}
